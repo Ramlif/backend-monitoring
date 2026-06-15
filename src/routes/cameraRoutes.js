@@ -1,27 +1,23 @@
 import express from "express";
-import multer from "multer";
+import fs from "fs";
 
 const router = express.Router();
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads/");
-  },
-
-  filename: (req, file, cb) => {
-    cb(null, "latest.jpg");
-  },
-});
-
-const upload = multer({ storage });
-
 router.post(
   "/camera/upload",
-  upload.single("image"),
+  express.raw({
+    type: "image/jpeg",
+    limit: "10mb",
+  }),
   (req, res) => {
+
+    fs.writeFileSync(
+      "uploads/latest.jpg",
+      req.body
+    );
+
     res.json({
       success: true,
-      file: "latest.jpg",
     });
   }
 );
