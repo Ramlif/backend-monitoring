@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+
 import sensorRoutes from "./routes/sensorRoutes.js";
 import cameraRoutes from "./routes/cameraRoutes.js";
 
@@ -11,16 +12,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/api", cameraRoutes);
-app.use("/api", cameraRoutes);
-
 app.use("/uploads", express.static("uploads"));
+
+app.use("/api", sensorRoutes);
+app.use("/api", cameraRoutes);
 
 app.get("/", (req, res) => {
   res.send("Backend Monitoring Kandang Ayam Petelur Berjalan");
 });
-
-app.use("/api", sensorRoutes);
 
 const PORT = process.env.PORT || 5000;
 
