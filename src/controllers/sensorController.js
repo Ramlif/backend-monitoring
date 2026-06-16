@@ -11,7 +11,7 @@ function detectAnomaly(suhu, kelembapan, gerakan, pakan) {
   }
 
   // Kelembapan ideal
-  if (kelembapan > 97 || kelembapan < 65) {
+  if (kelembapan > 97 || kelembapan < 55) {
     return "Anomali";
   }
 
