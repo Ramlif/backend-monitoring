@@ -6,12 +6,12 @@ import db from "../config/db.js";
 function detectAnomaly(suhu, kelembapan, gerakan, pakan) {
 
   // Suhu ideal ayam petelur
-  if (suhu > 50 || suhu < 21) {
+  if (suhu > 35 || suhu < 21) {
     return "Anomali";
   }
 
   // Kelembapan ideal
-  if (kelembapan > 99 || kelembapan < 20) {
+  if (kelembapan > 97 || kelembapan < 65) {
     return "Anomali";
   }
 
@@ -21,7 +21,7 @@ function detectAnomaly(suhu, kelembapan, gerakan, pakan) {
   }
 
   // Pakan (kg)
-  if (pakan < 0.2) {
+  if (pakan > 0.8) {
     return "Anomali";
   }
 
